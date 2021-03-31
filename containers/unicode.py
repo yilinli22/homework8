@@ -35,13 +35,25 @@ class NormalizedStr:
         '''
 
     def __len__(self):
-        pass
+        '''
+        Returns the length of the string.
+        The expression `len(a)` desugars to a.__len__().
+        '''
 
-    def __contains__(self, elem):
-        pass
+    def __contains__(self, substr):
+        '''
+        Returns true if the `substr` variable is contained within `self`.
+        The expression `a in b` desugars to `b.__contains__(a)`.
+
+        HINT:
+        You should normalize the `substr` variable to ensure that the comparison is done semantically and not syntactically.
+        '''
 
     def __getitem__(self, index):
-        pass
+        '''
+        Returns the character at position `index`.
+        The expression `a[b]` desugars to `a.__getitem__(b)`.
+        '''
 
     def lower(self):
         '''
@@ -55,6 +67,9 @@ class NormalizedStr:
 
     def __add__(self, b):
         '''
+        Returns a copy of `self` with `b` appended to the end.
+        The expression `a + b` gets desugared into `a.__add__(b)`.
+
         HINT:
         The addition of two normalized strings is not guaranteed to stay normalized.
         Therefore, you must renormalize the strings after adding them together.
@@ -64,5 +79,6 @@ class NormalizedStr:
         '''
         HINT:
         Recall that the __iter__ method returns a class, which is the iterator object.
-        You'll need to define your own iterator class with the appropriate magic methods to get returned here.
+        You'll need to define your own iterator class with the appropriate magic methods,
+        and return an instance of that class here.
         '''
