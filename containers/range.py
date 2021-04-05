@@ -32,7 +32,7 @@ def range(a, b=None, c=None):
             return []
         if b is not None and c is None:
             r0 = a
-            r1 = b-1
+            r1 = b - 1
             while r0 <= r1:
                 yield r0
                 r0 += 1
