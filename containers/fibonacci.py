@@ -124,7 +124,7 @@ def fib_yield(n=None):
             yield f2
     elif n is not None:
         for i in range(n):
-            f2 = f1+f0
+            f2 = f1 + f0
             f0 = f1
             if i < 2:
                 f2 = 1
