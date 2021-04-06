@@ -30,7 +30,7 @@ class NormalizedStr:
         that can be substituted directly into the python
         interpreter to reproduce an equivalent object.
         '''
-        return "NormalizedStr('"+str(self.text)+"', '" + str(self.normal_form) + "')"
+        return "NormalizedStr('" + str(self.text)+"', '" + str(self.normal_form) + "')"
 
     def __str__(self):
         '''
