@@ -100,6 +100,7 @@ class NormalizedStr:
         '''
         return NormalizedStrIter(self.text)
 
+
 class NormalizedStrIter:
 
     def __init__(self, text):
