@@ -82,4 +82,4 @@ class NormalizedStr:
         You'll need to define your own iterator class with the appropriate magic methods,
         and return an instance of that class here.
         '''
-        print("aaaa")
+        print("aaaaaaa")
