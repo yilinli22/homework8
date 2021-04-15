@@ -174,3 +174,4 @@ class BST(BinaryTree):
         HINT:
         See the insert_list function.
         '''
+        print ("aaa")
