@@ -1,14 +1,18 @@
+import random
+import hypothesis.strategies as st
+from hypothesis import given
+import copy
 from containers.BinaryTree import BinaryTree, Node
 from containers.BST import BST
 
 
 def test__BST_super():
     x = BST()
-    assert isinstance(x,BinaryTree)
+    assert isinstance(x, BinaryTree)
 
 
-# the very first thing to do whenever creating a data structure 
-# is to write a function to check if the invariant holds 
+# the very first thing to do whenever creating a data structure
+# is to write a function to check if the invariant holds
 # (in this case the BST property)
 # and create test cases for whether that function works
 
@@ -17,6 +21,7 @@ def test__BST_is_bst_satisified0():
     bst.root = Node(0)
     bst.root.left = Node(1)
     assert not bst.is_bst_satisfied()
+
 
 def test__BST_is_bst_satisified1():
     bst = BST()
@@ -29,6 +34,7 @@ def test__BST_is_bst_satisified1():
     bst.root.right.right = Node(-3)
     assert not bst.is_bst_satisfied()
 
+
 def test__BST_is_bst_satisfied2():
     bst = BST()
     bst.root = Node(-2)
@@ -36,15 +42,18 @@ def test__BST_is_bst_satisfied2():
     bst.root.right = Node(-4)
     assert not bst.is_bst_satisfied()
 
+
 def test__BST_is_bst_satisified3():
     bst = BST()
     assert bst.is_bst_satisfied()
+
 
 def test__BST_is_bst_satisified4():
     bst = BST()
     bst.root = Node(0)
     bst.root.left = Node(-1)
     assert bst.is_bst_satisfied()
+
 
 def test__BST_is_bst_satisified5():
     bst = BST()
@@ -57,6 +66,7 @@ def test__BST_is_bst_satisified5():
     bst.root.right.right = Node(3)
     assert bst.is_bst_satisfied()
 
+
 def test__BST_is_bst_satisified6():
     bst = BST()
     bst.root = Node(0)
@@ -67,6 +77,7 @@ def test__BST_is_bst_satisified6():
     bst.root.right.left = Node(-1)
     bst.root.right.right = Node(3)
     assert not bst.is_bst_satisfied()
+
 
 def test__BST_is_bst_satisified7():
     bst = BST()
@@ -81,10 +92,7 @@ def test__BST_is_bst_satisified7():
 
 ################################################################################
 
-import random
-import copy
-from hypothesis import given
-import hypothesis.strategies as st
+
 ints = st.lists(st.integers())
 
 
@@ -96,7 +104,7 @@ def test__BST_insert(xs):
         bst.insert(x)
         assert x in bst.to_list('inorder')
         assert bst.is_bst_satisfied()
-    
+
 
 @given(xs=ints)
 def test__BST_insert_list(xs):
@@ -104,7 +112,7 @@ def test__BST_insert_list(xs):
     bst = BST()
     bst.insert_list(xs)
     assert bst.is_bst_satisfied()
-    
+
 
 @given(xs=ints)
 def test__BST___init__(xs):
@@ -119,7 +127,7 @@ def test__BST___contains__1(xs):
     Checks that if a value is in the bst then __contains__ returns True
     '''
     xs = list(set(xs))
-    if len(xs)>0:
+    if len(xs) > 0:
         x = random.choice(xs)
         bst = BST(xs)
         assert x in bst
@@ -131,9 +139,9 @@ def test__BST___contains__2(xs):
     Checks that if a value is NOT in the bst then __contains__ returns False
     '''
     xs = list(set(xs))
-    if len(xs)>0:
+    if len(xs) > 0:
         while True:
-            x = random.uniform(min(xs)-1,max(xs)+1)
+            x = random.uniform(min(xs)-1, max(xs)+1)
             if x not in xs:
                 break
     else:
@@ -145,7 +153,7 @@ def test__BST___contains__2(xs):
 @given(xs=ints)
 def test__BST_find_smallest(xs):
     xs = list(set(xs))
-    if len(xs)>0:
+    if len(xs) > 0:
         x = min(xs)
         bst = BST(xs)
         assert x == bst.find_smallest()
@@ -154,7 +162,7 @@ def test__BST_find_smallest(xs):
 @given(xs=ints)
 def test__BST_find_largest(xs):
     xs = list(set(xs))
-    if len(xs)>0:
+    if len(xs) > 0:
         x = max(xs)
         bst = BST(xs)
         assert x == bst.find_largest()
@@ -169,13 +177,13 @@ def test__BST_remove1(xs):
     '''
     xs = list(set(xs))
     bst = BST(xs)
-    while len(xs)>0:
+    while len(xs) > 0:
         x = random.choice(xs)
         xs.remove(x)
         assert x in bst
         bst.remove(x)
         assert x not in bst
-        assert bst.to_list('inorder')==sorted(xs)
+        assert bst.to_list('inorder') == sorted(xs)
         assert bst.is_bst_satisfied()
 
 
@@ -191,11 +199,11 @@ def test__BST_remove2(xs):
     while y in xs:
         y += 1
     bst.remove(y)
-    assert bst.to_list('inorder')==sorted(xs)
+    assert bst.to_list('inorder') == sorted(xs)
 
 
 @given(xs=ints, ys=ints)
-def test__BST_remove_list1(xs,ys):
+def test__BST_remove_list1(xs, ys):
     xs = list(set(xs))
     bst = BST(xs)
     bst.remove_list(ys)
@@ -204,7 +212,7 @@ def test__BST_remove_list1(xs,ys):
 
 
 @given(xs=ints, ys=ints)
-def test__BST_remove_list2(xs,ys):
+def test__BST_remove_list2(xs, ys):
     xs = list(set(xs))
     bst = BST(xs)
     bst.remove_list(ys)
@@ -214,8 +222,8 @@ def test__BST_remove_list2(xs,ys):
     assert bst.to_list('inorder') == sorted(xs)
 
 
-@given(xs=ints,ys=ints)
-def test__BST_remove_and_insert1(xs,ys):
+@given(xs=ints, ys=ints)
+def test__BST_remove_and_insert1(xs, ys):
     '''
     This test performs a mixture of both insertions and removals.
     This ensures that there are no weird interactions between inserting and removing.
@@ -229,8 +237,8 @@ def test__BST_remove_and_insert1(xs,ys):
         assert bst.is_bst_satisfied()
 
 
-@given(xs=ints,ys=ints)
-def test__BST_remove_and_insert2(xs,ys):
+@given(xs=ints, ys=ints)
+def test__BST_remove_and_insert2(xs, ys):
     '''
     This test performs a mixture of both insertions and removals.
     This ensures that there are no weird interactions between inserting and removing.
@@ -244,8 +252,8 @@ def test__BST_remove_and_insert2(xs,ys):
         assert bst.is_bst_satisfied()
 
 
-@given(xs=ints,ys=ints)
-def test__BST_remove_and_insert3(xs,ys):
+@given(xs=ints, ys=ints)
+def test__BST_remove_and_insert3(xs, ys):
     '''
     This test performs a mixture of both insertions and removals.
     This ensures that there are no weird interactions between inserting and removing.
@@ -279,5 +287,5 @@ def test__BST_inorder_property(xs):
     xs2 = copy.copy(xs)
     random.shuffle(xs2)
     bst2 = BST(xs2)
-    
+
     assert bst1.to_list('inorder') == bst2.to_list('inorder')
