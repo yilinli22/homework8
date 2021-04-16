@@ -36,7 +36,7 @@ class BST(BinaryTree):
         if self.root:
             return BST._is_bst_satisfied(self.root)
         return True
-            
+
     @staticmethod
     def _is_bst_satisfied(node):
         '''
@@ -49,7 +49,7 @@ class BST(BinaryTree):
         HINT:
         Use the _find_smallest and _find_largest
         functions to fix the bug.
-        You should use the _ prefixed methods because 
+        You should use the _ prefixed methods because
         hose are static methods just like this one.
         '''
         ret = True
@@ -78,7 +78,7 @@ class BST(BinaryTree):
             return BST._insert(self.root, value)
         else:
             self.root = Node(value)
-    
+
     @staticmethod
     def _insert(node, value):
         if value == node.value:
