@@ -1,8 +1,3 @@
-'''
-This file implements the Binary Search Tree data structure.
-The functions in this file are considerably harder than the functions in the BinaryTree file.
-'''
-
 from containers.BinaryTree import BinaryTree, Node
 
 
@@ -11,7 +6,7 @@ class BST(BinaryTree):
     def __init__(self, xs=None):
         '''
         FIXME:
-        If xs is a list (i.e. xs is not None),
+        If xs is a list(i.e. xs is not None),
         then each element of xs needs to be inserted into the BST.
         '''
         super().__init__()
