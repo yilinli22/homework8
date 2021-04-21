@@ -96,12 +96,13 @@ class BinaryTree():
         '''
         if traversal_type == 'preorder':
             return self.preorder(self.root, [])
-        if traversal_type == 'inorder':
+        elif traversal_type == 'inorder':
             return self.inorder(self.root, [])
-        if traversal_type == 'postorder':
+        elif traversal_type == 'postorder':
             return self.postorder(self.root, [])
         else:
-            raise None
+            raise ValueError('Traversal type ' + str(traversal_type) +
+                             ' is not supported.')
 
     def preorder(self, start, traversal):
         '''

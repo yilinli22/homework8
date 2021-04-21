@@ -78,7 +78,7 @@ class AVLTree(BST):
 
     def insert(self, value):
         #print("insert=", value)
-        if self.root is None:
+        if not self.root:
             self.root = Node(value)
         if value == self.root.value:
             return
@@ -115,13 +115,13 @@ class AVLTree(BST):
         '''
         if not node:
             return
-        if AVLTree._balance_factor(node) < 0:
+        if AVLTree._balance_factor(node) < -1:
             if AVLTree._balance_factor(node.right) > 0:
                 node.right = AVLTree._right_rotate(node.right)
                 node = AVLTree._left_rotate(node)
             else:
                 node = AVLTree._left_rotate(node)
-        elif AVLTree._balance_factor(node) > 0:
+        elif AVLTree._balance_factor(node) > 1:
             if AVLTree._balance_factor(node.left) < 0:
                 node.left = AVLTree._left_rotate(node.left)
                 node = AVLTree._right_rotate(node)

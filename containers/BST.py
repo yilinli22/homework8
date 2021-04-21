@@ -97,18 +97,18 @@ class BST(BinaryTree):
 
     @staticmethod
     def _insert(node, value):
-        if value == node.value:
-            pass
         if value < node.value:
             if node.left is None:
                 node.left = Node(value)
             else:
                 BST._insert(node.left, value)
-        if value > node.value:
+        elif value > node.value:
             if node.right is None:
                 node.right = Node(value)
             else:
                 BST._insert(node.right, value)
+        if value == node.value:
+            pass
 
     def insert_list(self, xs):
         '''
