@@ -54,12 +54,12 @@ class AVLTree(BST):
         '''
         if not node or not node.right:
             return node
-        newRoot = Node(node.right.value)
-        newRoot.right = node.right.right
-        newRoot.left = Node(node.value)
-        newRoot.left.left = node.left
-        newRoot.left.right = node.right.left
-        return newRoot
+        newroot = Node(node.right.value)
+        newroot.right = node.right.right
+        newroot.left = Node(node.value)
+        newroot.left.left = node.left
+        newroot.left.right = node.right.left
+        return newroot
 
     @staticmethod
     def _right_rotate(node):
@@ -69,15 +69,15 @@ class AVLTree(BST):
         '''
         if not node or not node.right:
             return node
-        newRoot = Node(node.left.value)
-        newRoot.left = node.left.left
-        newRoot.right = Node(node.value)
-        newRoot.right.right = node.right
-        newRoot.right.left = node.left.right
-        return newRoot
+        newroot = Node(node.left.value)
+        newroot.left = node.left.left
+        newroot.right = Node(node.value)
+        newroot.right.right = node.right
+        newroot.right.left = node.left.right
+        return newroot
 
     def insert(self, value):
-        #print("insert=", value)
+        # print("insert=", value)
         if not self.root:
             self.root = Node(value)
         if value == self.root.value:
@@ -86,7 +86,7 @@ class AVLTree(BST):
 
     @staticmethod
     def _insert(node, value):
-        #print("_insert=", value)
+        # print("_insert=", value)
         if AVLTree._is_avl_satisfied(node):
             pass
         if value > node.value:
